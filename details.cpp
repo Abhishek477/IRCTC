@@ -12,6 +12,8 @@
 #include<QMessageBox>
 #include<QIODevice>
 
+//it will print the details of confimed ticket
+
 details::details(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::details)
