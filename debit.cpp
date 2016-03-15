@@ -12,6 +12,9 @@
 #include<QMessageBox>
 #include<QIODevice>
 
+//this window will just ask to select the bank you want to pay from
+//then it will redirect to the payment window
+
 debit::debit(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::debit)
