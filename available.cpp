@@ -12,7 +12,11 @@ available::available(QWidget *parent) :
 {
     ui->setupUi(this);
     this->setWindowTitle("AVAILABILITY");
-
+    
+   //all the available trains are stored in temp.txt, 
+   //so this file is opened and all details are extracted from it 
+   //and printed on table on available window
+   
     QString date,day,src,dst;
      QString train_no,train_name,arr_time,avail,fare;
     QString filename="D:\\qt\\irctc3\\temp.txt";
@@ -69,6 +73,7 @@ void available::on_pushButton_clicked()
    exit(0);
 }
 
+//function to open the new window for confimed train
 void available :: open_confirm()
 {
     con=new confirm(this);
@@ -79,6 +84,9 @@ void available::on_pushButton_2_clicked()
 {
     int flag=0;
     int sr=ui->lineEdit->text().toInt();
+    //you will be asked to enter serial no. of selected train
+    //and it will be checked whether you entered correct serial no.
+    
     QString str,train_no,train_name,arr_time,fare,avail;
     QTableWidgetItem* itm = ui->tableWidget->item( sr-1, 0 );
     if (itm)
@@ -97,11 +105,15 @@ void available::on_pushButton_2_clicked()
     }
     else
     {
+        //message is displayed if you enter wrong choice
         QMessageBox::critical(this,tr("error"),tr("Invalid choice!"));
         flag=1;
     }
     qDebug()<<str;
-
+    
+    //now the select.txt is opened the details of selected train are 
+    //written in this file for payment process
+    
     QString filename="D:\\qt\\irctc3\\select.txt";
     QFile file(filename);
     if(!file.exists()){
