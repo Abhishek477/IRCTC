@@ -281,9 +281,9 @@ void Dialog:: clear(queue<vector<int> > &q)
     std::swap(q,empty);
 }
 
-//it will search for train in particular day file 
-//and store the codes of city_name in graph
-//to be used for finding indirect trains
+//it will search for train in particular day file
+//and store the found train city_codes in graph to be used
+//for finding indirect trains
 void Dialog :: search(QString src,QString dst, QString day)
 {
    int key= readfile(day);
