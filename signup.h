@@ -1,5 +1,6 @@
 #ifndef SIGNUP_H
 #define SIGNUP_H
+#include "map"
 
 #include <QDialog>
 #include "login.h"
@@ -17,6 +18,7 @@ public:
     login *log;
     void open_login();
     QString encrypted(QString pass);
+    map<QString,QString> user;
 private slots:
     void on_buttonBox_accepted();
 
