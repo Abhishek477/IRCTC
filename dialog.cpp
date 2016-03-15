@@ -23,6 +23,11 @@ Dialog::Dialog(QWidget *parent) :
     ui->setupUi(this);
     this->setWindowTitle("WELCOME");
     flag=0;
+    //the file code.txt contains all codes of cities
+    //so two maps are created
+    //1. map si contains city_name as key value
+    //2. map is contains city_code as key value
+
     QString city_name,city_code;
     QString filename="D:\\qt\\irctc3\\code.txt";
     QFile file(filename);
@@ -54,13 +59,14 @@ void Dialog::on_pushButton_clicked()
 {
     QString src,dst,date1;
     QTextStream out(stdout);
+     QDate date;
+     int a,b,c;
+    //source and destination and date of travelling are asked from user
     src=ui->lineEdit->text();
     dst=ui->lineEdit_2->text();
-    QDate date;
-
     date1=ui->dateEdit->text();
-    int a,b,c;
 
+    //day is extracted from date selected from calender
      a= date1.split("/")[0].toInt();
      b= date1.split("/")[1].toInt();
      c= date1.split("/")[2].toInt();
@@ -68,15 +74,20 @@ void Dialog::on_pushButton_clicked()
     int day1=date.dayOfWeek();
     QString day=QDate::shortDayName(day1);
     int flag=0;
+
+    //if fields are empty error is generated
     if(src=="" || dst =="")
     {
      QMessageBox::critical(this,tr("error"),tr("fields are empty"));
      flag=1;
     }
+
+    //now search for the train for particular source to destination on choosen day
     if(flag==0)
     search(src,dst,day);
 }
 
+//to clear the fields
 void Dialog::on_pushButton_2_clicked()
 {
     ui->lineEdit->clear();
@@ -89,6 +100,7 @@ void Dialog::on_pushButton_3_clicked()
     exit(0);
 }
 
+//sort the database of trains on the basis of source
 void Dialog :: sort(database data[],int key)
 {
     int i, j;
@@ -109,6 +121,7 @@ void Dialog :: sort(database data[],int key)
     }
 }
 
+//efficiently search source and destination train in created database
 int Dialog :: binary_search(database data[],QString src, QString dst,int key)
 {
         int x,y;
@@ -138,6 +151,8 @@ int Dialog :: binary_search(database data[],QString src, QString dst,int key)
         return -1;
 
 }
+
+//this function will the open the file temp.txt
 
 void Dialog :: list_of_trains(QString src, QString dst, database data[], int key,QString day)
 {
@@ -188,6 +203,8 @@ int Dialog :: seq_search(database data[],QString src,QString dst,int key)
     return -1;
 }
 
+//if indirect path is found it will store the indirect path in extra.txt
+
 void Dialog:: print_path(vector<int> &path,int key)
 {
     QString filename="D:\\qt\\irctc3\\extra.txt";
@@ -225,6 +242,9 @@ bool Dialog:: isadjacency_node_not_present_in_current_path(int node,vector<int> 
     return true;
 }
 
+
+//this function will search for indirect trains
+//and it will only run when no direct trains are found
 int Dialog:: findpaths(int source ,int target ,int key )
 {
     path.push_back(source);
@@ -254,12 +274,16 @@ int Dialog:: findpaths(int source ,int target ,int key )
     return 1;
 }
 
+//function to clear the queue created
 void Dialog:: clear(queue<vector<int> > &q)
 {
     queue<vector<int> > empty;
     std::swap(q,empty);
 }
 
+//it will search for train in particular day file 
+//and store the codes of city_name in graph
+//to be used for finding indirect trains
 void Dialog :: search(QString src,QString dst, QString day)
 {
    int key= readfile(day);
@@ -480,6 +504,8 @@ void Dialog :: search(QString src,QString dst, QString day)
      av=new available(this);
      av->show();
  }
+
+ //read the specific file and store the data in database data[] to be used for further operations
 
 int Dialog :: readfile(QString day){
     int size;
