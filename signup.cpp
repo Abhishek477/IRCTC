@@ -4,7 +4,16 @@
 #include "QTextStream"
 #include "mainwindow.h"
 #include<QDebug>
+#include<iostream>
+#include<cstdio>
+#include<cstring>
+#include<fstream>
+#include<QFile>
+#include<QTextStream>
+#include<QDebug>
 #include<QMessageBox>
+#include "database.h"
+
 signup::signup(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::signup)
@@ -14,6 +23,26 @@ signup::signup(QWidget *parent) :
 
     QPixmap pix("D:\\qt\\irctc3\\logo.jpg");
     ui->label_4->setPixmap(pix);
+    QString filename ="D:\\qt\\irctc3\\user.txt";
+    QFile file(filename);
+    if(!file.exists())
+    {
+       qDebug() << filename<<"not exits...";
+    }
+    else
+    {
+        QString line;
+        if(file.open(QIODevice::ReadOnly|QIODevice::Text))
+        {
+            QTextStream stream(&file);
+            while(!stream.atEnd())
+            {
+                line=stream.readLine();
+                QString name = line.split(" ").at(0);
+                user[name]="1";
+            }
+        }
+      }
 }
 
 signup::~signup()
@@ -61,21 +90,32 @@ void signup::on_buttonBox_accepted()
     }
     else
     {
-    pass=encrypted(pass);
-    QString filename="D:\\qt\\irctc3\\user.txt";
-    QFile file(filename);
-    if(!file.exists()){
-        qDebug() << "NO exist "<<filename;
-    }else{
-        qDebug() << filename<<" exits...";
-    }
-    QTextStream out(&file);
-    file.open(QFile::ReadWrite | QFile::Append);
-    out<<"\n"<<name<<" ";
-    out<<pass<<" ";
-    file.close();
-    this->hide();
-    open_login();
+        if(user[name].compare("1")==0)
+        {
+            QMessageBox::critical(this,tr("error"),tr("Sorry, that username is already taken!"));
+            ui->lineEdit->clear();
+            ui->lineEdit_2->clear();
+            ui->lineEdit_3->clear();
+        }
+        else
+        {
+            pass=encrypted(pass);
+           QString filename="D:\\qt\\irctc3\\user.txt";
+           QFile file(filename);
+           if(!file.exists()){
+               qDebug() << "NO exist "<<filename;
+           }else{
+               qDebug() << filename<<" exits...";
+           }
+           QTextStream out(&file);
+           file.open(QFile::ReadWrite | QFile::Append);
+           out<<"\n"<<name<<" ";
+           out<<pass<<" ";
+           file.close();
+           this->hide();
+           open_login();
+        }
+
     }
 }
 
