@@ -19,6 +19,8 @@ confirm::confirm(QWidget *parent) :
     ui->setupUi(this);
     this->setWindowTitle("CONFIRMATION");
 
+    //get the details of choosen src , dst, and date from file temp.txt
+
     QString src,dst,date,arr_time,fare,avail,train_no,train_name,day;
     QString filename1="D:\\qt\\irctc3\\temp.txt";
     QFile file1(filename1);
@@ -41,6 +43,7 @@ confirm::confirm(QWidget *parent) :
     }
     file1.close();
 
+//get the details of selected train from file select.txt
 
     QString filename="D:\\qt\\irctc3\\select.txt";
     QFile file(filename);
@@ -63,6 +66,7 @@ confirm::confirm(QWidget *parent) :
         }
     }
     file.close();
+//print the details on upper part of window
 
     ui->label->setText("Day of Travelling:"+day+", "+date+"\nsource: "+src+"\ndestination:"+dst+"\nTrain no. and name :"+train_no+", "+train_name+"\nArrival time: "+arr_time);
 }
@@ -86,7 +90,8 @@ void confirm::on_pushButton_clicked()
 void confirm::on_pushButton_2_clicked()
 {
     //write details from table to file
-   // QString sr=ui->lineEdit->text();
+    //ask user to enter details of passenger
+
     QString name,age,adhar,gender;
     int i=0;
     QString filename="D:\\qt\\irctc3\\p-detail.txt";
