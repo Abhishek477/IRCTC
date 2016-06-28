@@ -1,5 +1,5 @@
 # IRCTC
-IRCTC Ticket Booking in qt framework using C++.
+IRCTC Ticket Booking System in qt framework using C++.
 
 # Details of Project:
 1.LOGIN page
