@@ -3,7 +3,7 @@ IRCTC Ticket Booking System in qt framework using C++.
 
 # Details of Project:
 
-# LOGIN page
+1.LOGIN page
 
 User can sign up and set his username and password that can be used for login process.The password is stored in encrypted form in file using an encryption algorithm which enhances the security.
 Searching of username and password for verification is done using map container which increases the overall efficiency of program.
