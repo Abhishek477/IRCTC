@@ -1,7 +1,7 @@
 # IRCTC
-IRCTC Ticket Booking System in qt framework using C++.
+IRCTC like Ticket Booking System in qt framework using C++.
 
-# Details of Project:
+## Details of Project:
 
 1.LOGIN page
 
@@ -15,6 +15,12 @@ In case there are no direct trains, Application also has the facility of display
 
 3.After selecting the trains, user need to fill the passenger details and then go to payment options to get the ticket confirmed.
 
-# PREREQUISITES FOR RUNNING OF PROGRAM:
+## PREREQUISITES FOR RUNNING OF PROGRAM:
 
 For running of program and to use the created files, you should create path D:\qt\irctc3 for all files.
+
+## PROJECT CONTRIBUTORS
+
+[msdeep14](https://github.com/msdeep14)
+[pawan_231](https://github.com/pawan_231)
+
