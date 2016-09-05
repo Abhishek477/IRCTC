@@ -22,5 +22,6 @@ For running of program and to use the created files, you should create path D:\q
 ## PROJECT CONTRIBUTORS
 
 [msdeep14](https://github.com/msdeep14)
-[pawan_231](https://github.com/pawan_231)
+
+[pawan231](https://github.com/pawan231)
 
