@@ -6,16 +6,16 @@ IRCTC like Ticket Booking System developed in C++ using Qt framework.
 
 1. LOGIN page
 
-User can sign up and set his username and password that can be used for login process.
+  User can sign up and set his username and password that can be used for login process.
 
-The password is stored in encrypted form in file using an encryption algorithm which enhances the security.
+  The password is stored in encrypted form in file using an encryption algorithm which enhances the security.
 
-Searching of username and password for verification is done using map container which is inbuilt Red Black Tree so it makes search faster and it also keeps in mind that there are no duplicate username created.
+  Searching of username and password for verification is done using map container which is inbuilt Red Black Tree so it makes   search faster and it also keeps in mind that there are no duplicate username created.
 
 2. System asks for date of travelling and source and destination.
-Application search for the available trains on that particular day and displays them.
+   Application search for the available trains on that particular day and displays them.
 
-In case there are no direct trains, Application also has the facility of displaying the indirect trains between stations. It is done efficiently by using graph algorithms avoiding the graph cycles.
+   In case there are no direct trains, Application also has the facility of displaying the indirect trains between stations.    It is done efficiently by using graph algorithms avoiding the graph cycles.
 
 3. After selecting the trains, user need to fill the passenger details and then go to payment options to get the ticket confirmed.
 
